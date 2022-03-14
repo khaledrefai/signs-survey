@@ -5,30 +5,34 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import 'bootstrap/dist/css/bootstrap.rtl.css'; 
 import{useState , useEffect} from "react"
-import{AnswersService} from './AnswersService'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
 export const  Admin =()=> {
-    const anserService = new AnswersService();
-    const[answers,setAnswers] = useState([]);
+     const[answers,setAnswers] = useState([]);
 
   useEffect(()=>{
-    anserService.getAllAnswers().then(data => {
-        let retData =[];
+    const getAllAnswers = async () => {
+        const res = await fetch('https://x1ohur0x73.execute-api.ap-south-1.amazonaws.com/v1/survey', {
+            headers: {
+                'Accept': '*/*'
+            }
+        });
+        const d = await res.json();
+        const data = d.Items;
+        let retData = [];
         data.forEach(element => {
-            element.answers.forEach(e =>{
+            element.answers.forEach(e => {
                 e.visitor_ID = element.visitor_ID;
                 retData.push(e);
-            })
-            
-        });
-        console.log(retData)
-
-         setAnswers(retData)
-        
-    });
-   },[]);
+            });
+        }
+        );
+         console.log(retData);
+        setAnswers(retData);
+   } ;
+   getAllAnswers();
+},[]);
  
   const imageBodyTemplate = (rowData) => {
     return <img src={`./images/${rowData.imageName}`} height={150} onError={(e) =>
