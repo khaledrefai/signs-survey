@@ -12,7 +12,6 @@ import { Column } from 'primereact/column';
 export const  Admin =()=> {
     const anserService = new AnswersService();
     const[answers,setAnswers] = useState([]);
-    const [multiSortMeta, setMultiSortMeta] = useState([{ field: 'visitor_ID', order: -1 }]);
 
   useEffect(()=>{
     anserService.getAllAnswers().then(data => {
@@ -29,8 +28,7 @@ export const  Admin =()=> {
          setAnswers(retData)
         
     });
-    console.log(answers);
-  },[]);
+   },[]);
  
   const imageBodyTemplate = (rowData) => {
     return <img src={`./images/${rowData.imageName}`} height={150} onError={(e) =>

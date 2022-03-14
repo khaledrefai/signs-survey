@@ -6,7 +6,7 @@ import 'primeflex/primeflex.css';
 import 'bootstrap/dist/css/bootstrap.rtl.css';
 import{Home} from './home'
 import{Admin} from './Admin'
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
  
