@@ -1,0 +1,21 @@
+/* CarouselDemo.css */
+
+.carousel-demo .product-item .product-item-content {
+    border: 1px solid var(--surface-d);
+    border-radius: 3px;
+    margin: .3rem;
+    text-align: center;
+    padding: 2rem 0;
+    overflow: hidden;
+
+ }
+
+.carousel-demo .product-item .product-image {
+    max-width: 90%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 
+    0, 0.23);
+        max-height: 400px;
+}
+.p-link{
+    display: none;
+}

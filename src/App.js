@@ -1,17 +1,22 @@
-import {useState} from 'react';
-import {Button} from 'primereact/button';
-import 'primereact/resources/themes/saga-blue/theme.css';
+import React from 'react';
+ import 'primereact/resources/themes/saga-green/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
+import 'bootstrap/dist/css/bootstrap.rtl.css';
+import{Home} from './home'
+import{Admin} from './Admin'
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-    const [count,setCount] = useState(0);
-    
+ 
+ 
     return (
-        <div className="text-center">
-            <Button label="Click" icon="pi pi-plus" onClick={e => setCount(count + 1)}></Button>
-            <div className="text-2xl text-900 mt-3">{count}</div>
+      <div className="container-fluid">
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="admin" element={<Admin />} />
+      </Routes>
         </div>
     );
 }

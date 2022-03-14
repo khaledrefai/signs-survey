@@ -1,17 +1,22 @@
 html {
   font-size: 1rem;
+  touch-action: none;
+
 }
 
 body {
   margin: 0px;
-  height: 100%;
-  padding: 2rem;
-  overflow-x: hidden;
-  overflow-y: auto;
+          width: 100%;
   background-color: var(--surface-ground);
   font-family: var(--font-family);
   font-weight: normal;
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.header{
+  background-color: #295f2b38;
+}
+.card{
+  border: 0!important;
 }

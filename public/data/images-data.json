@@ -1,0 +1,15 @@
+{
+    "data": [
+        {"id": "1","name": "img1.jpeg","isRight": false},
+        {"id": "2","name": "img2.jpeg","isRight": false},
+        {"id": "3","name": "img3.jpeg","isRight": false},
+        {"id": "4","name": "img4.jpeg","isRight": false},
+        {"id": "5","name": "img5.jpeg","isRight": false},
+        {"id": "6","name": "img6.jpeg","isRight": false},
+        {"id": "7","name": "img7.jpeg","isRight": false},
+        {"id": "8","name": "img8.jpeg","isRight": true},
+        {"id": "9","name": "img9.jpeg","isRight": true},
+        {"id": "10","name": "img10.jpeg","isRight": true}
+    ]
+}
+     
