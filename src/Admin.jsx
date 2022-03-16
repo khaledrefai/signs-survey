@@ -24,6 +24,7 @@ export const  Admin =()=> {
         data.forEach(element => {
             element.answers.forEach(e => {
                 e.visitor_ID = element.visitor_ID;
+                 e.create_date =  element.create_date;
                 retData.push(e);
             });
         }
@@ -44,6 +45,11 @@ const userAnswerBodyTemplate = (rowData) => {
 const imgaswerBodyTemplate = (rowData) => {
     return  rowData.imageAnswer?"صحيح":"خطأ";
 }
+const createDateBodyTemplate = (rowData) => {
+    var date = parseInt(rowData.create_date);
+    var ndate =    (new Date(date).toUTCString());
+    return  ndate;
+}
     return (
       <>
         
@@ -57,6 +63,8 @@ const imgaswerBodyTemplate = (rowData) => {
                     <Column body={imgaswerBodyTemplate}   header="الاجابة الصحيحة "></Column>
                     <Column field="mark" header="الدرجة" sortable></Column>
                     <Column field="totalTimeSec" header="زمن الاجابة بالثانية" sortable></Column>
+                    <Column body={createDateBodyTemplate} header="التاريخ" sortable></Column>
+
                 </DataTable>
             </div>
          </div>
