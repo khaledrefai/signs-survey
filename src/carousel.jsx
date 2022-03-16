@@ -21,8 +21,7 @@ export const MyCarousel = (visitorId) => {
     { id: 7, name: "img7.jpeg", isRight: false },
     { id: 8, name: "img8.jpeg", isRight: true },
     { id: 9, name: "img9.jpeg", isRight: true },
-    { id: 10, name: "img10.jpeg", isRight: true },
-    { id: 10, name: "img10.jpeg", isRight: true },
+    { id: 10, name: "img10.jpeg", isRight: true }
   ];
   const responsiveOptions = [
     {
@@ -40,11 +39,14 @@ export const MyCarousel = (visitorId) => {
     const timeDiffsEC = (Date.now() - startTime) / 1000; // here we calculate time diffrence between image show and user click
     const answer = new Answer(   imgid, imgName,  imganswer,  userAnswer,  timeDiffsEC, imganswer === userAnswer ? 1 : 0
     ); // prepare answer object to be add to the list 
-    setAnswers([...answers, answer]);  // prepare list of users answers in order to send to backend
-    if (page >= images.length-2 ) { // if user finish all images 
-      const payload = { id: visitorId.visitorId, answers: answers }; // payload to be sent to back end 
+    console.log("page ",page , "answer  ",answer, "imgid",imgid);
+    console.log("answers ",answers  );
+    if (page >= images.length-1 ) { // if user finish all images 
+      const payload = { id: visitorId.visitorId, answers: [...answers, answer] }; // payload to be sent to back end 
       anserService.saveResults(payload);  // here we send all answers to our bac end service 
     }
+    setAnswers([...answers, answer]);  // prepare list of users answers in order to send to backend
+
     setPage(page + 1); // move to next photo
  
   };
@@ -78,7 +80,7 @@ export const MyCarousel = (visitorId) => {
   return (
     <div className="carousel-demo">
       <div className="card">
-        {page < images.length-1 ? (  // if the user has not seen all photos we show him next photo 
+        {page < images.length  ? (  // if the user has not seen all photos we show him next photo 
           <Carousel
             value={images}
             numVisible={1}
