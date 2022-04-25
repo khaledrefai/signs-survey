@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.rtl.css';
 import{Home} from './home'
 import{Admin} from './Admin'
 import { Routes, Route } from "react-router-dom";
+import { Avg } from './Avg';
 
 function App() {
  
@@ -16,6 +17,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="admin" element={<Admin />} />
+        <Route path="average" element={<Avg />} />
       </Routes>
         </div>
     );
