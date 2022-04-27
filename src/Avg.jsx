@@ -7,13 +7,19 @@ import 'bootstrap/dist/css/bootstrap.rtl.css';
 import{useState , useEffect} from "react"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { useSearchParams } from "react-router-dom";
 
 export const  Avg =()=> {
      const[answers,setAnswers] = useState([]);
     const[totalRecord,setTotalRecord]= useState(0);
+    const [searchParams, setSearchParams] = useSearchParams();
+ 
+
   useEffect(()=>{
     const getAllAnswers = async () => {
-        const res = await fetch('https://x1ohur0x73.execute-api.ap-south-1.amazonaws.com/v1/survey', {
+        const res = await
+         fetch('https://x1ohur0x73.execute-api.ap-south-1.amazonaws.com/v1/survey/'+searchParams.get("survey_id") 
+, {
             headers: {
                 'Accept': '*/*'
             }
@@ -48,7 +54,7 @@ export const  Avg =()=> {
 },[]);
  
   const imageBodyTemplate = (rowData) => {
-    return <img src={`./images/${rowData.imageName}`} height={150} onError={(e) =>
+    return <img src={`./${searchParams.get("survey_id")}/${rowData.imageName}`} height={150} onError={(e) =>
          e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />;
 }
 const marksTemplate = (rowData) => {
@@ -63,6 +69,15 @@ const avgTimeTemplate = (rowData) => {
          <div className="row body">
         <div className='col-12'>
              <div className="card text-center">
+             <h2 className="text-center"> 
+              هل تشير هذه اللافتة الى 
+              {searchParams.get("survey_id") ==="s1"?(<> حزام الأمان اجباري </>)
+              :(searchParams.get("survey_id") ==="s2"?(<>    عدم استخدام الجوال اثناء القيادة؟</>):
+              (searchParams.get("survey_id") ==="s3"?(<> عدم استخدام الضوء المبهر </>):
+              (<> يجب وضع الاطفال في الكرسي المخصص </>)
+              ))}
+              
+              </h2>
                  <h2>
                     عدد الاشخاص الذين قاموا بالاستبيان : 
                     <red> {totalRecord}</red>

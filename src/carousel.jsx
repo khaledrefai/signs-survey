@@ -5,23 +5,26 @@ import "./CarouselDemo.css";
 import { useState } from "react";
 import { Answer } from "./answer.model";
 import { AnswersService } from "./AnswersService";
+import { useSearchParams } from "react-router-dom";
+
 export const MyCarousel = (visitorId) => {
   const [page, setPage] = useState(0);
   const [answers, setAnswers] = useState([]);
   let startTime = Date.now();
   const anserService = new AnswersService();
-
+  const [searchParams, setSearchParams] = useSearchParams();
+ 
   const images = [
     { id: 1, name: "img1.jpeg", isRight: false },
     { id: 2, name: "img2.jpeg", isRight: false },
-    { id: 3, name: "img3.jpeg", isRight: false },
+    { id: 3, name: "img3.jpeg", isRight: true },
     { id: 4, name: "img4.jpeg", isRight: false },
     { id: 5, name: "img5.jpeg", isRight: false },
     { id: 6, name: "img6.jpeg", isRight: false },
-    { id: 7, name: "img7.jpeg", isRight: false },
-    { id: 8, name: "img8.jpeg", isRight: true },
-    { id: 9, name: "img9.jpeg", isRight: true },
-    { id: 10, name: "img10.jpeg", isRight: true }
+    { id: 7, name: "img7.jpeg", isRight: true },
+    { id: 8, name: "img8.jpeg", isRight: false },
+    { id: 9, name: "img9.jpeg", isRight: false },
+    { id: 10, name: "img10.jpeg", isRight: false }
   ];
   const responsiveOptions = [
     {
@@ -42,7 +45,8 @@ export const MyCarousel = (visitorId) => {
     console.log("page ",page , "answer  ",answer, "imgid",imgid);
     console.log("answers ",answers  );
     if (page >= images.length-1 ) { // if user finish all images 
-      const payload = { id: visitorId.visitorId, answers: [...answers, answer] }; // payload to be sent to back end 
+      const payload = { visitor_id: visitorId.visitorId, answers: [...answers, answer] , 
+        survey_id: searchParams.get("survey_id") }; // payload to be sent to back end 
       anserService.saveResults(payload);  // here we send all answers to our bac end service 
     }
     setAnswers([...answers, answer]);  // prepare list of users answers in order to send to backend
@@ -56,7 +60,7 @@ export const MyCarousel = (visitorId) => {
         <div className="product-item-content ">
           <div className="mb-3">
             <img
-              src={`./images/${image.name}`}  // load image from local folder (public)
+              src={`./${searchParams.get("survey_id")}/${image.name}`}  // load image from local folder (public)
               alt={image.name}
               className="product-image "
             />
@@ -89,7 +93,13 @@ export const MyCarousel = (visitorId) => {
             itemTemplate={imageemplate}
             header={
               <h5 className="text-center"> 
-                هل تشير هذه اللافتة الى عدم استخدام الجوال اثناء القيادة؟
+              هل تشير هذه اللافتة الى 
+              {searchParams.get("survey_id") === "s1"?(<> حزام الأمان اجباري </>)
+              :(searchParams.get("survey_id") === "s2"?(<>    عدم استخدام الجوال اثناء القيادة؟</>):
+              (searchParams.get("survey_id") === "s3"?(<> عدم استخدام الضوء المبهر </>):
+              (searchParams.get("survey_id") === "s4"?<> يجب وضع الاطفال في الكرسي المخصص </>:<></>)
+              ))}
+              
               </h5>
             }
             page={page}

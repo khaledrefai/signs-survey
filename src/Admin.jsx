@@ -7,13 +7,15 @@ import 'bootstrap/dist/css/bootstrap.rtl.css';
 import{useState , useEffect} from "react"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { useSearchParams } from "react-router-dom";
 
 export const  Admin =()=> {
      const[answers,setAnswers] = useState([]);
+     const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(()=>{
     const getAllAnswers = async () => {
-        const res = await fetch('https://x1ohur0x73.execute-api.ap-south-1.amazonaws.com/v1/survey', {
+        const res = await fetch('https://x1ohur0x73.execute-api.ap-south-1.amazonaws.com/v1/survey/'+ searchParams.get("survey_id") , {
             headers: {
                 'Accept': '*/*'
             }
@@ -36,7 +38,7 @@ export const  Admin =()=> {
 },[]);
  
   const imageBodyTemplate = (rowData) => {
-    return <img src={`./images/${rowData.imageName}`} height={150} onError={(e) =>
+    return <img src={`./${searchParams.get("survey_id")}/${rowData.imageName}`} height={150} onError={(e) =>
          e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />;
 }
 const userAnswerBodyTemplate = (rowData) => {
