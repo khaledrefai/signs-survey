@@ -12,7 +12,7 @@ import { useSearchParams } from "react-router-dom";
 export const  Avg =()=> {
      const[answers,setAnswers] = useState([]);
     const[totalRecord,setTotalRecord]= useState(0);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
  
 
   useEffect(()=>{
@@ -51,7 +51,7 @@ export const  Avg =()=> {
         setAnswers(retData);
    } ;
    getAllAnswers();
-},[]);
+},[searchParams]);
  
   const imageBodyTemplate = (rowData) => {
     return <img src={`./${searchParams.get("survey_id")}/${rowData.imageName}`} height={150} onError={(e) =>

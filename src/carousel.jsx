@@ -12,7 +12,7 @@ export const MyCarousel = (visitorId) => {
   const [answers, setAnswers] = useState([]);
   let startTime = Date.now();
   const anserService = new AnswersService();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
  
   const images = [
     { id: 1, name: "img1.jpeg", isRight: false },
