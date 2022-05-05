@@ -70,11 +70,11 @@ const avgTimeTemplate = (rowData) => {
         <div className='col-12'>
              <div className="card text-center">
              <h2 className="text-center"> 
-              هل تشير هذه اللافتة الى 
-              {searchParams.get("survey_id") ==="s1"?(<> حزام الأمان اجباري </>)
-              :(searchParams.get("survey_id") ==="s2"?(<>    عدم استخدام الجوال اثناء القيادة؟</>):
-              (searchParams.get("survey_id") ==="s3"?(<> عدم استخدام الضوء المبهر </>):
-              (<> يجب وضع الاطفال في الكرسي المخصص </>)
+             Is this 
+              {searchParams.get("survey_id") ==="s1"?(<>  seat belt traffic sign?     </>)
+              :(searchParams.get("survey_id") ==="s2"?(<>   no cellphone while driving traffic sign? </>):
+              (searchParams.get("survey_id") ==="s3"?(<>  make the light in regular mode (Normal head lighting) traffic sign? </>):
+              (<>   car child seat traffic sign? </>)
               ))}
               
               </h2>

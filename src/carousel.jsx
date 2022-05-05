@@ -67,11 +67,11 @@ export const MyCarousel = (visitorId) => {
           </div>
           <div>
             <div className="car-buttons mt-5">
-              <Button   icon="pi pi-check-circle"  className="p-button p-button-rounded mr-2" label="صح"   onClick={(e) =>
+              <Button   icon="pi pi-check-circle"  className="p-button p-button-rounded mr-2" label="True"   onClick={(e) =>
                   doAnswer(image.isRight, true, image.id, image.name) // when user click this button we call doAnswer function
                 }
               />
-              <Button  icon="pi pi-times-circle" className="p-button-danger p-button-rounded" label="خطأ"   onClick={(e) =>
+              <Button  icon="pi pi-times-circle" className="p-button-danger p-button-rounded" label="false"   onClick={(e) =>
                   doAnswer(image.isRight, false, image.id, image.name)// when user click this button we call doAnswer function
                 }
               />
@@ -93,11 +93,11 @@ export const MyCarousel = (visitorId) => {
             itemTemplate={imageemplate}
             header={
               <h5 className="text-center"> 
-              هل تشير هذه اللافتة الى 
-              {searchParams.get("survey_id") === "s1"?(<> حزام الأمان اجباري </>)
-              :(searchParams.get("survey_id") === "s2"?(<>    عدم استخدام الجوال اثناء القيادة؟</>):
-              (searchParams.get("survey_id") === "s3"?(<> عدم استخدام الضوء المبهر </>):
-              (searchParams.get("survey_id") === "s4"?<> يجب وضع الاطفال في الكرسي المخصص </>:<></>)
+            Is this 
+              {searchParams.get("survey_id") === "s1"?(<>  seat belt traffic sign? </>)
+              :(searchParams.get("survey_id") === "s2"?(<>  no cellphone while driving traffic sign? </>):
+              (searchParams.get("survey_id") === "s3"?(<>  make the light in regular mode (Normal head lighting) traffic sign?   </>):
+              (searchParams.get("survey_id") === "s4"?<>  car child seat traffic sign?  </>:<></>)
               ))}
               
               </h5>
@@ -109,7 +109,7 @@ export const MyCarousel = (visitorId) => {
         ) : (  // if user has seen all photos we show him thanks 
           <div className="row">
             <div className="col-12 text-primary text-center text-justif font-medium">
-              تم استكمال الاستبيان , شكرا لك
+                    Thank you 
             </div>
             <div className="col-12 text-primary text-center text-justif font-medium"></div>
           </div>
