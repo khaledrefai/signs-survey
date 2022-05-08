@@ -54,7 +54,7 @@ export const  Avg =()=> {
 },[searchParams]);
  
   const imageBodyTemplate = (rowData) => {
-    return <img src={`./${searchParams.get("survey_id")}/${rowData.imageName}`} height={150} onError={(e) =>
+    return <img src={`/${searchParams.get("survey_id")}/${rowData.imageName}`} height={150} onError={(e) =>
          e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />;
 }
 const marksTemplate = (rowData) => {
