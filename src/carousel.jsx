@@ -33,11 +33,7 @@ export const MyCarousel = (visitorId) => {
       numScroll: 1,
     },
   ];
-  /*
-  useEffect(() => {
-    setImages(data) ;
-}, []); // eslint-disable-line react-hooks/exhaustive-deps
- */
+
   const doAnswer = (imganswer, userAnswer, imgid, imgName) => { // function called when user click button (right,wrong)
     const timeDiffsEC = (Date.now() - startTime) / 1000; // here we calculate time diffrence between image show and user click
     const answer = new Answer(   imgid, imgName,  imganswer,  userAnswer,  timeDiffsEC, imganswer === userAnswer ? 1 : 0
@@ -99,8 +95,7 @@ export const MyCarousel = (visitorId) => {
               (searchParams.get("survey_id") === "s3"?(<>  make the light in regular mode (Normal head lighting) traffic sign?   </>):
               (searchParams.get("survey_id") === "s4"?<>  car child seat traffic sign?  </>:<></>)
               ))}
-              
-              </h5>
+           </h5>
             }
             page={page}
             onPageChange={() => (startTime = Date.now())} // when the photo showen we set start time = now in order to calculate dif

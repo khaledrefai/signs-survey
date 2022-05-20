@@ -16,7 +16,7 @@ export const  Avg =()=> {
  
 
   useEffect(()=>{
-    const getAllAnswers = async () => {
+    const getAllAnswers = async () => {  // get average answers from database
         const res = await
          fetch('https://x1ohur0x73.execute-api.ap-south-1.amazonaws.com/v1/survey/'+searchParams.get("survey_id") 
 , {
@@ -61,7 +61,7 @@ const marksTemplate = (rowData) => {
     return  rowData.totalMarks/totalRecord*100+"%";
 }
 const avgTimeTemplate = (rowData) => {
-    return  rowData.totalTime/totalRecord
+    return (rowData.totalTime/totalRecord).toPrecision(3);
 }
  
     return (
@@ -79,7 +79,7 @@ const avgTimeTemplate = (rowData) => {
               
               </h2>
                  <h2>
-                    عدد الاشخاص الذين قاموا بالاستبيان : 
+                   Total number of people surveied  : 
                     <red> {totalRecord}</red>
                      </h2>
              </div>
@@ -91,8 +91,8 @@ const avgTimeTemplate = (rowData) => {
                 <DataTable value={answers} responsiveLayout="scroll">
                 <Column field="imageId"  ></Column>
                     <Column header="" body={imageBodyTemplate}  ></Column>
-                    <Column body={marksTemplate} header=" نسبة الاجابات الصحيحة "></Column>
-                    <Column body={avgTimeTemplate}   header="  متوسط زمن الاجابة   "></Column>
+                    <Column body={marksTemplate} header="Correct answers ratio"></Column>
+                    <Column body={avgTimeTemplate}   header=" Average correct response time  "></Column>
  
                 </DataTable>
             </div>
